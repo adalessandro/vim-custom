@@ -23,6 +23,7 @@ endfunction
 
 function s:c()
     setlocal colorcolumn=80
+    highlight ColorColumn ctermbg=8
 endfunction
 
 function s:cpp()
