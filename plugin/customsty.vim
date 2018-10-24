@@ -11,6 +11,7 @@ augroup customsty
     autocmd FileType h call s:h()
     autocmd FileType cpp call s:cpp()
     autocmd BufEnter *.h :setlocal filetype=c
+    setlocal tabpagemax=100
 augroup END
 
 function s:js()
