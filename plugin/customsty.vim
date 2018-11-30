@@ -11,6 +11,7 @@ augroup customsty
     autocmd FileType h call s:h()
     if $VIM_CPP_SHORT == "1"
         autocmd FileType cpp call s:cpp_short()
+        autocmd BufEnter *.c :setlocal filetype=cpp
         autocmd BufEnter *.h :setlocal filetype=cpp
     else
         autocmd FileType cpp call s:cpp()
