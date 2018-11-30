@@ -9,8 +9,13 @@ augroup customsty
     autocmd FileType html call s:js()
     autocmd FileType c call s:c()
     autocmd FileType h call s:h()
-    autocmd FileType cpp call s:cpp()
-    autocmd BufEnter *.h :setlocal filetype=c
+    if $VIM_CPP_SHORT == "1"
+        autocmd FileType cpp call s:cpp_short()
+        autocmd BufEnter *.h :setlocal filetype=cpp
+    else
+        autocmd FileType cpp call s:cpp()
+        autocmd BufEnter *.h :setlocal filetype=c
+    endif
     setlocal tabpagemax=100
 augroup END
 
@@ -31,7 +36,36 @@ function s:cpp()
     setlocal tabstop=8
     setlocal shiftwidth=8
     setlocal softtabstop=8
+    highlight ColorColumn ctermbg=8
+
     setlocal textwidth=120
+    setlocal colorcolumn=120
+    setlocal noexpandtab
+
+    setlocal cindent
+    setlocal cinoptions=:0,l1,t0,g0,(0
+
+    highlight default link LinuxError ErrorMsg
+
+    syn match LinuxError / \+\ze\t/     " spaces before tab
+    syn match LinuxError /\%>120v[^()\{\}\[\]<>]\+/ " virtual column 121 and more
+
+    " Highlight trailing whitespace, unless we're in insert mode and the
+    " cursor's placed right after the whitespace. This prevents us from having
+    " to put up with whitespace being highlighted in the middle of typing
+    " something
+    autocmd InsertEnter * match LinuxError /\s\+\%#\@<!$/
+    autocmd InsertLeave * match LinuxError /\s\+$/
+endfunction
+
+function s:cpp_short()
+    setlocal tabstop=4
+    setlocal shiftwidth=4
+    setlocal softtabstop=4
+    highlight ColorColumn ctermbg=8
+
+    setlocal textwidth=120
+    setlocal colorcolumn=120
     setlocal noexpandtab
 
     setlocal cindent
