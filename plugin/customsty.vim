@@ -13,6 +13,7 @@ augroup customsty
     autocmd FileType html call s:js()
     autocmd FileType c call s:c()
     autocmd FileType h call s:h()
+    autocmd FileType tex call s:tex()
     if $VIM_ENV == "bullet"
         autocmd FileType cpp call s:cpp_bullet()
         autocmd BufEnter *.c :setlocal filetype=cpp
@@ -44,6 +45,11 @@ function s:js_mofigs()
 endfunction
 
 function s:c()
+    setlocal colorcolumn=80
+    highlight ColorColumn ctermbg=8
+endfunction
+
+function s:tex()
     setlocal colorcolumn=80
     highlight ColorColumn ctermbg=8
 endfunction
