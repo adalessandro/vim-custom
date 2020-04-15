@@ -10,6 +10,7 @@ augroup customsty
     else
         autocmd FileType javascript call s:js()
     endif
+    autocmd FileType sh call s:bash()
     autocmd FileType html call s:js()
     autocmd FileType c call s:c()
     autocmd FileType h call s:h()
@@ -27,6 +28,14 @@ augroup customsty
     endif
     setlocal tabpagemax=100
 augroup END
+
+function s:bash()
+    setlocal tabstop=4
+    setlocal shiftwidth=4
+    setlocal softtabstop=4
+    setlocal textwidth=120
+    setlocal expandtab
+endfunction
 
 function s:js()
     setlocal tabstop=4
