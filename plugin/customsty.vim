@@ -15,17 +15,8 @@ augroup customsty
     autocmd FileType c call s:c()
     autocmd FileType h call s:h()
     autocmd FileType tex call s:tex()
-    if $VIM_ENV == "bullet"
-        autocmd FileType cpp call s:cpp_bullet()
-        autocmd BufEnter *.c :setlocal filetype=cpp
-        autocmd BufEnter *.h :setlocal filetype=cpp
-    elseif $VIM_ENV == "dart"
-        autocmd FileType cpp call s:cpp_dart()
-        autocmd BufEnter *.hpp :setlocal filetype=cpp
-    else
-        autocmd FileType cpp call s:cpp()
-        autocmd BufEnter *.h :setlocal filetype=c
-    endif
+    "autocmd FileType cpp call s:cpp()
+    "autocmd BufEnter *.h :setlocal filetype=c
     setlocal tabpagemax=100
 augroup END
 
